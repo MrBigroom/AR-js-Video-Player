@@ -6,11 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
     <title>Augmented Reality Video Player</title>
-    <link rel="stylesheet" href="style.css">
 
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        window.addEventListener('click', function () {
+      var video = document.querySelector('#bluder-cake');
+      if(video.paused) {
+          video.play();
+      } else {
+          video.pause();
+      }
+      });
+    </script>
 
 </head>
 
@@ -20,8 +29,8 @@
         <a-marker-camera
         type="pattern"
         url="https://raw.githubusercontent.com/MrBigroom/bluder_cake_video/master/pattern-SkelchyNEW.patt"
-        near="0.1"
-        far="20"
+        raycaster="objects: clickable"
+        emitsevent="true"
         look-controls-enabled="false"
         cursor="rayOrigin: mouse"
         ></a-marker-camera>
@@ -29,7 +38,10 @@
         <a-assets>
             <video
             id="bluder-cake"
-            src="https://cdn.glitch.me/43b27969-6cad-444b-aa87-00cd9655617a%2FInterview%20no%20credit(1).mp4?v=1638350975560"></video>
+            src="https://cdn.glitch.me/43b27969-6cad-444b-aa87-00cd9655617a%2FInterview%20no%20credit(1).mp4?v=1638350975560"
+            loop="true"
+            muted="true"
+            autoplay></video>
         </a-assets>
 
         <a-video src="#bluder-cake" width="8" height="4.5" position="0 0 0" display=flex rotation="-90 0 0">
