@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html>
+<!-- include A-Frame -->
+<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <title>Augmented Reality Video Player</title>
+<!-- include ar.js for A-Frame -->
+<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
 
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-
-    <script>
-        window.addEventListener('click', function () {
+<!-- toggle video playpause function with on click-->
+<script>
+    window.addEventListener('click', function () {
       var video = document.querySelector('#bluder-cake');
       if(video.paused) {
           video.play();
@@ -19,22 +14,22 @@
           video.pause();
       }
       });
-    </script>
-
-</head>
+</script>
 
 <body style="margin: 0px; overflow: hidden;">
-    <a-scene embedded arjs='sourceType: webcam;' vr-mode-ui='enabled: false'>
+    <a-scene embedded arjs='sourceType: webcam;' vr-mode-ui="enabled: false">
 
         <a-marker-camera
+        preset="custom"
         type="pattern"
         url="https://raw.githubusercontent.com/MrBigroom/bluder_cake_video/master/pattern-SkelchyNEW.patt"
         raycaster="objects: clickable"
-        emitsevent="true"
-        look-controls-enabled="false"
-        cursor="rayOrigin: mouse"
-        ></a-marker-camera>
-
+        emitevents="true"
+        cursor="rayOrigin: mouse;"
+        id="markerA">
+        </a-marker-camera>
+        
+        <!-- adding in the video -->
         <a-assets>
             <video
             id="bluder-cake"
@@ -44,10 +39,8 @@
             autoplay></video>
         </a-assets>
 
-        <a-video src="#bluder-cake" width="8" height="4.5" position="0 0 0" display=flex rotation="-90 0 0">
+        <!-- using the asset management system -->
+        <a-video src="#bluder-cake" width="8" height="4.5" position="0 0 0" display = flex rotation="-90 0 0">
         </a-video>
-
     </a-scene>
-    
 </body>
-</html>
